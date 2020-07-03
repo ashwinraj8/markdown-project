@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Blog</title>
+  
+</head>
+<body>
+  
+  <div class="container">
+    <h1 class="mb-4">Feature Yourself</h1>
+    <h5 class="mb-4">Give your thoughts a new platform</h5>
+
+    <form action="/contact" method="POST">
+      <div class="form-group">
+        <label for="contact">Contact Us</label>
+        <input type="email" name="email"  autocomplete="off"
+            placeholder="email">
+        <input type="text"  name="message"  autocomplete="off"
+        placeholder="message">
+    </div>
+    <div class="form-group">
+      <input type="submit" class="btn btn-outline-primary" value="Done">
+  </div>
+    </form>
+
+    <a href="/articles/new" class="btn btn-success">New Blog</a>
+    <a href="/articles/personal" class="btn btn-success">My-Profile</a>
+    <a href="/publish" class="btn btn-success">Publish</a>
+    <a href="/ideas" class="btn btn-success">Join Ideas</a>
+    <a href="/users/logout" class="btn btn-success">Logout</a>
+
+    
+    <% articles.forEach(article => { %>
+      <div class="card mt-4">
+        <div class="card-body">
+          <h4 class="card-title"><%= article.title %></h4>
+          <div class="card-subtitle text-muted mb-2">
+            <%= article.createdAt.toLocaleDateString() %>
+          </div>
+          <div class="card-text mb-2"><%= article.description %></div>
+          <a href="articles/<%= article.slug %>" class="btn btn-primary">Read More</a>
+          <button onclick="addone()" class="like_button btn btn-primary">Like</button>
+          <% if (admin) { %>
+            <a href="/articles/edit/<%= article.id %>" class="btn btn-info">Edit</a>
+            <form action="/articles/<%= article.id %>?_method=DELETE" method="POST" class="d-inline">
+              <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+            
+            <%} else { %>
+            <p></p>
+            <% } %>
+           
+
+          
+         <!-- <a href="articles/edit/<%= article.id %>" class="btn btn-info">Edit</a>
+          <form action="/articles/<%= article.id %>?_method=DELETE" method="POST" class="d-inline">
+            <button type="submit" class="btn btn-danger">Delete</button>
+          </form>-->
+        </div>
+      </div>
+      
+    <% }) %>
+  </div>
+  
+</body>
+<script type="text/javascript" src="../js/like.js"></script>
+</html>
