@@ -12,8 +12,8 @@ const router = express.Router()
 // })
 ///************** */
 AWS.config.update({
-  accessKeyId: "AKIAINJJHM63CPUTC4DA",
-  secretAccessKey: "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"
+  accessKeyId: "",
+  secretAccessKey: ""
 });
 let s3 = new AWS.S3();
 
@@ -33,7 +33,7 @@ router.get('/personal',async (req, res) => {
   async function getImage(){
     const data =  s3.getObject(
     {
-        Bucket: 'azz-bucket',
+        Bucket: '',
         Key: 'eeeee'  //Here to pass articlee.id or articles.name;
         }
     
