@@ -12,9 +12,9 @@ routes.use(bodyparser.urlencoded({extended: false}));
 
 //////////////////////////////////////////////////////
 aws.config.update({
-  secretAccessKey: 'GdeD6mA47xaonsTfLONexpqBsSI6PUALd0Rtkp6z',
-  accessKeyId: 'AKIAINJJHM63CPUTC4DA',
-  region:'ap-south-1'
+  secretAccessKey: '',
+  accessKeyId: '',
+  region:''
 });
 
 const s3 = new aws.S3();
@@ -46,7 +46,7 @@ routes.post('/', (req,res)=>{
       fileFilter,
       storage: multerS3({
         s3,
-        bucket: 'azz-bucket',
+        bucket: '',
         //acl: 'public-read',
         metadata: function (req, file, cb) {
           cb(null, {fieldName: 'TESTING_META_DATA!'});
